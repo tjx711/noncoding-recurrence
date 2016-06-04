@@ -24,3 +24,6 @@ This project is about exploration of regression models for noncoding mutation re
 </ol>
 </p>
 
+<p>
+<b>Code examples explanation:</b> 
+</p>
