@@ -15,9 +15,9 @@ This project is about exploration of regression models for noncoding mutation re
 <li> Noncoding mutation annotation, feature extraction, and recurrence calculation </li>
 <li> Regression analysis with three main categories of nonlinear models: 
    <ul>
-     <li> Generalized linear model including Poisson and Negative Binomial </li>
-     <li> Ensemble of decision trees including Random Forest and Boosting </li>
-     <li> Deep neural network </li>
+     <li> Generalized linear model including Poisson and Negative Binomial (written in R) </li>
+     <li> Ensemble of decision trees including Random Forest and Boosting (written in Python)</li>
+     <li> Deep neural network (written in Python)</li>
    </ul>
 </li>
 <li> Result analysis and plotting </li>
