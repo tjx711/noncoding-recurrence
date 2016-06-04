@@ -29,5 +29,6 @@ This project is about exploration of regression models for noncoding mutation re
 <ul>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_extract_features.py"> noncoding_extract_features.py </a> : the main entry to extract features.  </li>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/run_features.sh"> run_features.sh </a> : the bash script to call feature extracting with different inputs of raw features in BED format. </li>
+<li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/join_features.sh"> join_features.sh </a> : the bash script to join all the extracted features to a big matrix. </li>
 </ul>
 </p>
