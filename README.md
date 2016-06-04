@@ -10,7 +10,7 @@ This project is about exploration of regression models for noncoding mutation re
 <img src="overall-proc.png">
 
 <p> 
-Mainly it includes three steps in the whole procedure:
+<b>Mainly it includes three steps in the whole procedure:
 <ol>
 <li> Noncoding mutation annotation, feature extraction, and recurrence calculation </li>
 <li> Regression analysis with three main categories of nonlinear models: 
@@ -20,7 +20,7 @@ Mainly it includes three steps in the whole procedure:
      <li> Deep neural network </li>
    </ul>
 </li>
-<li> Result analysis and plotting <li>
+<li> Result analysis and plotting </li>
 </ol>
 </p>
 
