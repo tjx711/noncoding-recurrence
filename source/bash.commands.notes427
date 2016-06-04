@@ -1,0 +1,124 @@
+ 2838  less nc.res.freq.filtered.0.4.2.ada.test.err.tsv
+ 2839  grep "test.mse" *tsv
+ 2840  grep "test.mse" *tsv|grep -v log
+ 2841  grep "test.mse" *tsv|grep -v log|grep -v shuffled
+ 2842  grep "test.mse" *tsv|grep -v log|grep -v poisson|grep -v nb
+ 2843  grep "test.mse" *tsv|grep -v log|grep -v poisson|grep -v nb|awk -F":" '{print $1"\t"$2}'
+ 2844  grep "test.mse" *tsv|grep -v log|grep -v poisson|grep -v nb|awk -F":" '{print $1"\t"$2}'|cut -f1,3-8
+ 2845  grep "test.mse" *tsv|grep -v log|grep -v poisson|grep -v nb|awk -F":" '{print $1"\t"$2}'|cut -f3-8 > ../tmp.col2
+ 2846  grep "test.mse" *tsv|grep -v log|grep -v poisson|grep -v nb|awk -F":" '{print $1"\t"$2}'|cut -f1 > ../tmp.col1
+ 2847  cd ..
+ 2848  ls
+ 2849  ls -l
+ 2850  less tmp.col1
+ 2851  cat tmp.col
+ 2852  cat tmp.col1
+ 2853  awk -F"." '{print $5"."$6"\t"$8}' tmp.col1
+ 2854  paste tmp.col1 tmp.col2
+ 2855  awk -F"." '{print $5"."$6"\t"$8}' tmp.col1 > tmp.col3
+ 2856  paste tmp.col3 tmp.col2
+ 2857  paste tmp.col3 tmp.col2|sort -k1,1 -k2,2
+ 2858  paste tmp.col3 tmp.col2|sort -k1,1 -k2,2 
+ 2859  paste tmp.col3 tmp.col2|sort -k1,1 -k2,2  > result
+ 2860  cd data/
+ 2861  grep "test.mse" *tsv|grep -v log|grep 'poisson|nb'
+ 2862  grep "test.mse" *tsv|grep -v log|grep "poisson|nb"
+ 2863  grep "test.mse" *tsv|grep -v log|grep "poisson"
+ 2864  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb" 
+ 2865  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'
+ 2866  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep -v shuffled 
+ 2867  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep -v shuffled|cut -f3
+ 2868  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep -v shuffled|cut -f3 >../tmp2.pos.nb
+ 2869* grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep -v shuffled|cut -f1
+ 2870  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep shuffled|cut -f3 >../tmp2.pos.nb.shuff
+ 2871  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep shuffled|cut -f1
+ 2872  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep shuffled|cut -f1|awk -F"." '{print $5"."$6"\t"$8}'
+ 2873  grep "test.mse" *tsv|grep -v log|egrep "poisson|nb"|awk -F":" '{print $1"\t"$2}'|grep shuffled|cut -f1|awk -F"." '{print $5"."$6"\t"$8}' >../tmp1.pos.nb
+
+
+ 2878  paste tmp1.pos.nb tmp2.pos.nb
+ 2879  paste tmp1.pos.nb tmp2.pos.nb >result.nb.pos
+ 2880  paste result.nb.pos tmp2.pos.nb.shuff 
+ 2881  paste result.nb.pos tmp2.pos.nb.shuff >tmp
+ 2882  mv tmp result.nb.pos 
+ 2883  less result.nb.pos 
+ 2884  ls
+ 2885  ls -l
+ 2886  less result
+ 2887  cat result.nb.pos >> result
+ 2888  less result
+ 2889  sort -k1,1 -k2,2 result
+ 2890  sort -k1,1 -k2,2 result|less
+ 2891  sort -k1,1 -k2,2 result > result.sorted
+
+ 2955  egrep -v "poisson|nb" result
+ 2956* awk -F"\t" '{avg = ($4+$5+$6+$7+$8)/5; print $1"\t"$2"\t"$3"\t"avg}' 
+ 2957  egrep -v "poisson|nb" result|awk -F"\t" '{avg = ($4+$5+$6+$7+$8)/5; print $1"\t"$2"\t"$3"\t"avg}'
+ 2958  egrep -v "poisson|nb" result|awk -F"\t" '{avg = ($4+$5+$6+$7+$8)/5; print $1"\t"$2"\t"$3"\t"avg}' OFMT="%.5f"
+ 2959  egrep -v "poisson|nb" result|awk -F"\t" '{avg = ($4+$5+$6+$7+$8)/5; print $1"\t"$2"\t"$3"\t"avg}' OFMT="%6.5f"
+ 2960  egrep -v "poisson|nb" result|awk -F"\t" '{avg = ($4+$5+$6+$7+$8)/5; print $1"\t"$2"\t"$3"\t"avg}'
+ 2961  ls
+
+
+ 2146  grep train.mse *tsv
+ 2147  grep train.mse *tsv|egrep -v "nb|poisson"
+ 2148  grep train.mse *tsv|egrep -v "nb|poisson"|sed 's/[//'
+ 2149  grep train.mse *tsv|egrep -v "nb|poisson"|sed -i 's/[//g'
+ 2150  grep train.mse *tsv|egrep -v "nb|poisson"|sed -i 's/\[//g'
+ 2151  sed -i 's/\[//g' nc.res.freq.filtered.0.5.5.gradient.train.err.tsv
+ 2152  less nc.res.freq.filtered.0.5.5.gradient.train.err.tsv
+ 2153  sed -i 's/\[//g' *.train.err.tsv
+ 2154* 
+ 2155  grep train.mse *tsv|egrep -v "nb|poisson"|sed -i 's/\[//g'
+ 2156  grep train.mse *tsv|egrep -v "nb|poisson"
+ 2157  sed -i 's/\[/\t/g' nc.res.freq.filtered.0.3.1.ada.train.err.tsv
+ 2158  less nc.res.freq.filtered.0.3.1.ada.train.err.tsv
+ 2159  sed -i 's/,/\t/g' nc.res.freq.filtered.0.3.1.ada.train.err.tsv
+ 2160  less nc.res.freq.filtered.0.3.1.ada.train.err.tsv
+ 2161  ls
+ 2162  cd ../result/
+ 2163  ls
+ 2164  ls -l
+ 2165  less nc.res.result.test.mse
+ 2166  ls
+ 2167  ls -l
+
+ 2027  sed -i 's/\[//g' *.train.err.tsv
+ 2028  sed -i 's/\]//g' *.train.err.tsv
+ 2029  grep train.mse *tsv|egrep -v "quasi|nb|poisson" 
+ 2030  sed -i 's/,/\t/g' *.train.err.tsv
+ 2031  grep train.mse *tsv|egrep -v "quasi|nb|poisson"
+
+ 2036  grep train.mse *tsv|egrep -v "quasi|nb|poisson" |cut -f 1 > ../tmp1
+ 2037  grep train.mse *tsv|egrep -v "quasi|nb|poisson" |cut -f 2-5 > ../tmp2
+ 2038  less ../tmp2
+ 2039  less ../tmp1
+ 2040  awk -F"." '{print $5"\t"$6"\t"$8}' ../tmp1
+ 2041  awk -F"." '{print $5"."$6"\t"$8}' ../tmp1
+ 2042  awk -F"." '{print $5"."$6"\t"$8}' ../tmp1 > ../tmp3
+
+ 2166  find . -name "*ann.train*.tsv" -type f |xargs sed "s/^/train.mse\t/g"
+ 2167  find . -name "*ann.train*.tsv" -type f |xargs sed "s/^/train.mse\t/g"|grep -v 12.0
+ 2168  find . -name "*ann.train*.tsv" -type f |xargs sed -i "s/^/train.mse\t/g"
+ 2169  ls *ann.train*tsv
+ 2170  less nc.res.freq.filtered.0.3.1.ann.train.err.tsv
+ 2171  find . -name "*sae.train*.tsv" -type f |xargs sed -i "s/^/train.mse\t/g"
+ 2172  ls -l *sae*train*
+ 2173  less nc.res.freq.filtered.0.3.1.sae.train.err.tsv
+
+
+ 2180  grep "train.mse" *tsv|grep -v "(12" 
+ 2181  grep train.mse *tsv|egrep -v "quasi|nb|poisson|\(12"
+ 2182  grep train.mse *tsv|egrep "ann|sae"
+ 2183  grep train.mse *tsv|egrep "ann|sae"|egrep -v "\(12|12.0"
+ 2184  grep train.mse *tsv|egrep "ann|sae"|egrep -v "\(12|12.0"|cut -f1  > ../tmp1
+ 2185  grep train.mse *tsv|egrep "ann|sae"|egrep -v "\(12|12.0"|cut -f2-7 > ../tmp2
+ 2186  awk -F"." '{print $5"."$6"\t"$8}' ../tmp1
+ 2187  awk -F"." '{print $5"."$6"\t"$8}' ../tmp1 > ../tmp3
+ 2188  paste ../tmp3 ../tmp2
+ 2189  paste ../tmp3 ../tmp2|sort -k2,2 -k1,1 
+ 2190  paste ../tmp3 ../tmp2|sort -k2,2 -k1,1 >> ../result/nc.res.result.train.ensemble.mse 
+
+
+
+

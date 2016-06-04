@@ -1,0 +1,111 @@
+library(MASS)
+library(boot)
+library(bootstrap)
+library(DAAG)
+library(caret)
+
+setwd("/home/tanjinxu/Project/noncoding")
+#setwd("/Users/tanjinxu/Documents/project/noncoding")
+source("noncoding_loaddata.R")
+
+## Load the data
+load(file="train_test.rda")
+train_data <- datlist$train
+test_data <- datlist$test
+
+## Sampling subset from the whole data
+train_subset <- train_data[sample(nrow(train_data),0.3*nrow(train_data)),1:ncol(train_data)-1]
+test_subset <- test_data[sample(nrow(test_data),0.3*nrow(test_data)),1:ncol(train_data)-1]
+train_data <- train_subset
+test_data <- test_subset
+
+## Here we substract the counts number by 1 to satisfy
+## the Negative-Binomial Distribution assumption, which
+## we verfied by the counts distribution plots
+train_data$counts <- train_data$counts - 1
+test_data$counts <- test_data$counts - 1
+train_x <- train_data[,1:ncol(train_data)-1]
+train_y <- train_data$counts
+test_x <- test_data[,1:ncol(test_data)-1]
+test_y <- test_data$counts
+
+##
+## TO-DO: try what we get if the data is normalized/standarized
+##
+train_x_normed <- data.frame(sapply(train_x,function(x) (x-mean(x))/sd(x)))
+test_x_normed <- data.frame(sapply(test_x,function(x) (x-mean(x))/sd(x)))
+train_data <- cbind(train_x_normed, train_y)
+test_data <- cbind(test_x_normed, test_y)
+colnames(train_data)[ncol(train_data)] <- "counts"
+colnames(test_data)[ncol(test_data)] <- "counts"
+
+## Apply Poisson-Regression with 10-fold Cross-validation
+kfold <- 10
+niters <- 2
+
+res.err.cor.df <- data.frame()
+res.fit.imp <- data.frame(rep(0,29))
+
+for(i in 1:niters){
+  ## Apply Poisson Regression model
+  #glm.fit.res <- glm(counts ~ ., data = train_data, family=poisson(link=log))
+  
+  ## Apply Negative Binomial Regression model
+  glm.fit.res <- glm.nb(counts ~ ., data = train_data, link=log)
+  
+  ## Check if the model coverged or not
+  cat("Regression model converged?", glm.fit.res$converged)
+  cat("\n")
+
+  ## Extract feature importances
+  fit.sum <- summary(glm.fit.res)
+  fit.cofs <- fit.sum$coefficients
+  fit.zval <- fit.cofs[2:nrow(fit.cofs),4]
+  
+  ## Call varImp from "caret" package to calculate the importance score
+  ## so that we can compare this score with the scores from the skilearn
+  ## regression models
+  fit.imp <- varImp(glm.fit.res, scale=FALSE)
+  fit.imp$Overall <- (fit.imp$Overall - min(fit.imp$Overall))/
+                      (max(fit.imp$Overall)-min(fit.imp$Overall))
+  #fit.imp.adj <- fit.imp[order(-fit.imp$Overall),,drop=FALSE]
+
+  ## Not sure why here the result returned by residulas is not equal to the real residual
+  ## calculated by (y - y_hat)
+  #error.train <- mean(residuals(glm.fit.res)^2)
+  
+  ## Calculate the training error and the cross-validation error
+  error.train <- mean((train_data$counts - glm.fit.res$fitted.values)^2)
+  error.valid <- cv.glm(train_data,glm.fit.res,K=kfold)$delta
+  
+  ## Calculate the spearman coefficient and the pearson coefficient
+  cor.sp <- cor(train_data$counts, glm.fit.res$fitted.values,method="spearman",use="complete")
+  cor.pearson <- cor(train_data$counts, glm.fit.res$fitted.values,method="pearson",use="complete")
+  
+  ## Print the train/validation metric values
+  cat(sprintf("iter:%d, train error:%f, spearman:%f, pearson:%f, validation error:%f\n", 
+              i, error.train, cor.sp[1], cor.pearson[1], error.valid))
+  
+  ## Now fitting the testing data to the learned model
+  test.x <- test_data[,1:ncol(test_data)-1]
+  test.y <- test_data[,ncol(test_data)]
+  pred.counts <- predict.glm(glm.fit.res,newdata=test.x,type="response",se.fit=FALSE)
+  error.test <- mean((pred.counts - test.y)^2)
+  cor.sp.test <- cor(test.y, pred.counts, method="spearman", use="complete")
+  cor.pearson.test <- cor(test.y, pred.counts, method="pearson", use="complete")
+  
+  ## Print the testing metric values
+  cat(sprintf("iter:%d, test error:%f, spearman:%f, pearson:%f\n",
+              i, error.test, cor.sp.test[1], cor.pearson.test[1]))
+
+  res <- c(error.train,error.valid,cor.sp[1],cor.pearson[1],
+          error.test,cor.sp.test[1],cor.pearson.test[1])
+  res.err.cor.df <- rbind(res.err.cor.df,res)
+  res.fit.imp <- cbind(res.fit.imp, fit.imp)
+}
+
+## Write the result to file so we can plot with output from skilearn regression models
+write.table(res.err.cor.df,"nc.poisson.res.err.cor.df.tsv",sep="\t",row.names=TRUE)
+write.table(rowMeans(res.fit.imp), "nc.poisson.res.imp.tsv",sep="\t")
+
+cat("average erros:",colMeans(res.err.cor.df))
