@@ -33,5 +33,9 @@ This project is about exploration of regression models for noncoding mutation re
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/join_features.sh"> join_features.sh </a> : the bash script to join all the extracted features to a big matrix. </li>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_mut_anno.py"> noncoding_mut_anno.py </a> : a program to annotate the noncoding mutations out of all the input mutations downloaded from the COSMIC database. </li>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_mut_regression.py"> noncoding_mut_regression.py </a> : the main file for exploration of conventional machine learning regression models including randomforest, adaboost, gradientBoosting.</li>
+<li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_glm_regr.v4.R"> noncoding_glm_regr.v4.R </a> : the main file for exploration of generalized linear model including Poisson and Negative Binomial.</li>
+<li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_sae_baseline.py"> noncoding_sae_baseline.py </a> : a simple artifical neural network with one hidden layer regression.</li>
+<li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_sae.py"> noncoding_sae.py </a> : stacked auto encoder regression.</li>
+
 </ul>
 </p>
