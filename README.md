@@ -37,6 +37,9 @@ This project is about exploration of regression models for noncoding mutation re
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_glm_regr.v4.R"> noncoding_glm_regr.v4.R </a> : the main file for exploration of generalized linear model including Poisson and Negative Binomial.</li>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_sae_baseline.py"> noncoding_sae_baseline.py </a> : a simple artifical neural network with one hidden layer regression.</li>
 <li> <a href="https://github.com/tj711/noncoding-recurrence/blob/master/source/noncoding_sae.py"> noncoding_sae.py </a> : stacked auto encoder regression.</li>
-
 </ul>
+</p>
+
+<p>
+<b>Remaining work:</b>
 </p>
