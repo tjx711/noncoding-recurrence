@@ -26,6 +26,14 @@ This project is about exploration of regression models for noncoding mutation re
 
 <p>
 <b> Project directory structure: </b>
+<ul>
+<li> backup: backed-up project directory from time to time.</li>
+<li> data: downloaded raw features data, intermittent data, and the input data matrix for regression analysis </li>
+<li> docs: reference documents </li>
+<li> nils: the supplementary data of the paper by Nils J Fredricksson. </li>
+<li> SAE: ANN and SAE code (run on GPU). </li>
+<li> source: source code of the project including data processing, feature extraction, and regression analysis. </li>
+</ul>
 </p>
 <img src="proj-structure.png">
 
