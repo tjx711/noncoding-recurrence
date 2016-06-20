@@ -42,4 +42,7 @@ This project is about exploration of regression models for noncoding mutation re
 
 <p>
 <b>Remaining work:</b>
+<ul>
+<li> Add more features. Some considerations: 1) introduce more specific Transcription Factors; 2) the distance to the oncogenes/tumor-suppressor genes; 3) the DNA shape/histone info; 4)etc..</li>
+</ul>
 </p>
