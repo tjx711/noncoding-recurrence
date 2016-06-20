@@ -26,6 +26,7 @@ This project is about exploration of regression models for noncoding mutation re
 
 <p>
 <b> Project directory structure: </b>
+<img src="proj-structure.png">
 </p>
 
 <p>
