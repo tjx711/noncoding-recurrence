@@ -43,8 +43,9 @@ This project is about exploration of regression models for noncoding mutation re
 <p>
 <b>Remaining work:</b>
 <ul>
-<li> Add more features. Some considerations: 1) introduce more specific Transcription Factors; 2) the distance to the oncogenes/tumor-suppressor genes; 3) the DNA shape/histone info; 4) chromosome length; 5) etc..</li>
-<li> Binary classfication problem. The challenge is to construct balanced training set which is consist of the positive cases (true noncoding mutation drivers) and the negative cases (validated passenger mutations). </li>
-<li> Focus on specific categories of cancer types. Considering overall cancer types together may be more difficult due to high heterogeneity of different tumor samples in different cancer types. </li>
+<li> <b>Add more features.</b> Some considerations: 1) introduce more specific Transcription Factors; 2) the distance to the oncogenes/tumor-suppressor genes; 3) the DNA shape/histone info; 4) chromosome length; 5) etc..</li>
+<li> <b>Left work for regression analysis.</b> 1) fit zero-truncated negative binomial regression into our current noncoding mutation data; 2) need special handling with the super outliers with rare extreme high frequency; 3) check the predicted recurrence of the Poisson/NB model, i.e., check the top 100 mutations with highest predicted recurrence in comparison to the true frequency value; 4) maybe a ranking regressoin problem; 5) need carefully re-lookinto the features data. </li>
+<li> <b>Binary classfication problem.</b> The challenge is to construct balanced training set which is consist of the positive cases (true noncoding mutation drivers) and the negative cases (validated passenger mutations). </li>
+<li> <b>Focus on specific categories of cancer types.</b> Considering overall cancer types together may be more difficult due to high heterogeneity of different tumor samples in different cancer types. </li>
 </ul>
 </p>
