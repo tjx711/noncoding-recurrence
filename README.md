@@ -67,4 +67,5 @@ This project is about exploration of regression models for noncoding mutation re
 <b> References </b>
 <ul>
 <li> RGB colors: http://sape.inf.usi.ch/quick-reference/ggplot2/colour</li>
+<li/> Shapes: http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
 </ul>
