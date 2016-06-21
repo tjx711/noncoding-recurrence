@@ -62,3 +62,9 @@ This project is about exploration of regression models for noncoding mutation re
 <li> <b>Focus on specific categories of cancer types.</b> Considering overall cancer types together may be more difficult due to high heterogeneity of different tumor samples in different cancer types. </li>
 </ul>
 </p>
+
+<p>
+<b> References </b>
+<ul>
+<li> RGB colors: http://sape.inf.usi.ch/quick-reference/ggplot2/colour</li>
+</ul>
